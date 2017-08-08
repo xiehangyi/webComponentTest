@@ -65,7 +65,7 @@
     function url_request(){
         var options = this.options;
 
-        xhy_utils.ajax('post',options.url,options.queryParam,function(){data_request.call(this);});
+        xhy_data_utils.ajax('post',options.url,options.queryParam,function(){data_request.call(this);});
     }
 
     /**
@@ -128,7 +128,7 @@
             $el.find(".pulldown-tree-val").data('id',id);
             $el.find(".pulldown-tree-val").text(val);
             $el.find('.pulldown-tree-box:first').hide();
-            options.action && options.action(id,val);
+            options.action && options.action(id,val); // 执行注册事件
             eventUtil.stopPropagation(e);
         });
 
@@ -217,11 +217,7 @@
 
 })(jQuery,window);
 
-
-
-$(function(){
-
-    var data = [
+var data = [
     {
         id:1,
         key:'key1',
@@ -249,7 +245,10 @@ $(function(){
 
         }]
     }
-    ];
+];
+
+
+$(function(){
 
     $('.pulldown_tree').pulldown_tree({
     	data:data,
@@ -260,4 +259,9 @@ $(function(){
             console.log(val);
         }
     });
+
+    // 创建遮罩层
+    var $cover = xhy_view_utils.cover_layer();
+    // 显示遮罩层
+    $cover.show();
 });
