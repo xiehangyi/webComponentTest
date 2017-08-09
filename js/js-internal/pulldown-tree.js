@@ -101,7 +101,11 @@
 
         // 点击元素出现下拉树
         $el.click(function(e){
-            $(this).find('.pulldown-tree-box:first').show();
+            var $tree_box = $(this).find('.pulldown-tree-box:first');
+            
+            $tree_box.show();
+            $tree_box.animate({'height':$tree_box.data('height')+'px'},'normal');
+
             eventUtil.stopPropagation(e);
         });
 
@@ -110,9 +114,18 @@
             var $this = $(this);
             var $box = $this.find('.pulldown-tree-box:first');
             if($box.is(":hidden")){
-                $this.closest('li').siblings().find('.pulldown-tree-box:first').hide();
+                var $siblings = $this.closest('li').siblings().find('.pulldown-tree-box:first');
+
+                // 隐藏同级其他下拉树
+                $siblings.animate({'height':'0'},'normal');
+                $siblings.hide();
+
+                // 展开点击的项
                 $box.show();
+                $box.animate({'height':$box.data('height')+'px'},'normal');
+                
             } else {
+                $box.animate({'height':'0'},'normal');
                 $box.hide();
             }
             eventUtil.stopPropagation(e);
@@ -123,20 +136,31 @@
             var $this = $(this),
                 $span = $this.find('.span-val'),
                 id = $span.data('id'),
-                val = $span.text();
-                
+                val = $span.text(),
+                $boxes = $el.find('.pulldown-tree-box');
+
+            // 隐藏下拉树
+            $boxes.animate({'height':'0'},'normal');
+            $boxes.hide();
+            
+            // 绑定数据
             $el.find(".pulldown-tree-val").data('id',id);
             $el.find(".pulldown-tree-val").text(val);
             $el.find('.pulldown-tree-box:first').hide();
+
             options.action && options.action(id,val); // 执行注册事件
+
             eventUtil.stopPropagation(e);
         });
 
         // 点击body，下拉树消失
-        $body.click(function(e){
+        $body.off('click.pulldown_tree.hide').on('click.pulldown_tree.hide',function(e){
             var $this = $(this);
             if($this.closest('.pulldown_tree').length == 0){
-                $el.find('.pulldown-tree-box:first').hide();
+                var $boxes = $el.find('.pulldown-tree-box');
+                // 隐藏下拉树
+                $boxes.animate({'height':'0'},'normal');
+                $boxes.hide();
             } else {
                 return;
             }
@@ -170,9 +194,11 @@
      * @return {[type]} [description]
      */
     function traversal_build(options,data){
-        var wrap_html;
+        var wrap_html,
+            data_length = data.length,
+            box_height = data_length * 36 + 2;
 
-        wrap_html = '<div class="pulldown-tree-box" style="display:none;"><ul>';
+        wrap_html = '<div class="pulldown-tree-box" style="display:none;height:0;" data-height="'+box_height+'"><ul>';
 
         $.each(data,function(i,val){
             if (val.hasOwnProperty(options.childrenField)) {
@@ -260,8 +286,8 @@ $(function(){
         }
     });
 
-    // 创建遮罩层
-    var $cover = xhy_view_utils.cover_layer();
-    // 显示遮罩层
-    $cover.show();
+    // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
+    // $cover.show(); // 显示遮罩层
+
+
 });

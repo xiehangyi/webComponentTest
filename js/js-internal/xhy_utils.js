@@ -102,4 +102,5 @@ var xhy_view_utils = {
         });
         return $cover;
     },
+    
 }
