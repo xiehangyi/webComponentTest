@@ -1,7 +1,6 @@
 .pulldown_tree {
 	position: relative;
 	cursor: pointer;
-	padding: 9px;
 }
 
 .pulldown_tree:after {

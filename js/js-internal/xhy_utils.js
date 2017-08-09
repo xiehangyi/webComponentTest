@@ -90,16 +90,20 @@ var xhy_view_utils = {
      * @type {[type]}
      */
     cover_layer:function(){
-        var $body = $('body'),
-            html = '<div class="cover-layer" style="display:none"></div>',
-            $cover;
+        var $cover = $('.cover-layer');
 
-        $body.append(html);
-        $cover = $body.find('.cover-layer');
+        if($cover.length === 0){
+            var $body = $('body'),
+                html = '<div class="cover-layer" style="display:none"></div>';
+            $body.append(html);
+            $cover = $body.find('.cover-layer');
+        }
+        
+        // $cover = $body.find('.cover-layer');
 
-        $body.off('click.cover-layer').on('click.cover-layer',function(){
-            $cover.hide();
-        });
+        // $body.off('click.cover-layer').on('click.cover-layer',function(){
+        //     $cover.hide();
+        // });
         return $cover;
     },
     
