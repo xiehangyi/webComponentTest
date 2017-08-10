@@ -122,11 +122,22 @@
 
                 // 展开点击的项
                 $box.show();
-                $box.animate({'height':$box.data('height')+'px'},'normal');
+                $box.animate({'height':$box.data('height')+'px'},{
+                    duration:"normal",
+                    start:function(){
+                        $box.show();
+                    },
+                    complete:function(){}
+                });
 
             } else {
-                $box.animate({'height':'0'},'normal');
-                $box.hide();
+                $box.animate({'height':'0'},{
+                    duration:"normal",
+                    start:function(){},
+                    complete:function(){
+                        $box.hide();
+                    }
+                });
             }
             eventUtil.stopPropagation(e);
         });

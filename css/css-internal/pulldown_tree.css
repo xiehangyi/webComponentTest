@@ -1,6 +1,7 @@
 .pulldown_tree {
 	position: relative;
 	cursor: pointer;
+	padding: 0 10px;
 }
 
 .pulldown_tree:after {
@@ -53,7 +54,11 @@
 .pulldown_tree .pulldown-tree-box li {
 	position: relative;
 	padding: 0 10px;
-	width: 100%;
+	width: inherit;
 	height: 36px;
 	line-height: 36px;
+}
+
+.pulldown_tree .pulldown-tree-val {
+	line-height: 38px;
 }
