@@ -99,9 +99,7 @@
 		$el.find('.doc-tree-item').click(function(e){
 			options.action && options.action(this);
 			eventUtil.stopPropagation(e);
-		})
-
-
+		});
 	}
 
 	function load_data(){
@@ -146,7 +144,6 @@
 
 				doc_tree_content +=	'</li>';
 
-				
 			} else {
 				doc_tree_content += '<li><a class="doc-tree-item-style doc-tree-item">'+
 					'<span class="doc-tree-indent" style="width:'+indent+'px"></span>'+

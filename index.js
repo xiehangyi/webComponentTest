@@ -1,55 +1,51 @@
-// $(function(){
-// 	$('body').modal_window({
-// 		header:"新建",
-// 		cancel:"取消",
-// 		determine:"保存",
-// 		determineEvent:function($w){
-// 			console.log($w);
-// 		}
-// 	});
-// });
-
-
-var data = [
-    {
-        id:1,
-        key:'key1',
-        children:[{id:11,key:'key11'}]
-    },
-    {
-        id:2,
-        key:'key2',
-        children:[
-        {   id:21,
-            key:'key21',
-            children:[
-            {
-                id:211,
-                key:'key211'
-            }]
-        },{
-            id:22,
-            key:'key22',
-            children:[
-            {
-                id:221,
-                key:'key221'
-            }]
-
-        },{
-            id:23,
-            key:'key23'
-        }]
-    }
-];
+var data = [{id:1,val:'val1'},{id:2,val:'val2'},{id:3,val:'val3'},{id:4,val:'val4'},{id:5,val:'val5'}];
 
 $(function(){
-	$('.box').doc_tree({
+	$('.box').modalpicker({
 		data:data,
-		valField:'key',
-		indentation:20
+		
 	});
 });
+// var data = [
+//     {
+//         id:1,
+//         key:'key1',
+//         children:[{id:11,key:'key11'}]
+//     },
+//     {
+//         id:2,
+//         key:'key2',
+//         children:[
+//         {   id:21,
+//             key:'key21',
+//             children:[
+//             {
+//                 id:211,
+//                 key:'key211'
+//             }]
+//         },{
+//             id:22,
+//             key:'key22',
+//             children:[
+//             {
+//                 id:221,
+//                 key:'key221'
+//             }]
+
+//         },{
+//             id:23,
+//             key:'key23'
+//         }]
+//     }
+// ];
+
+// $(function(){
+// 	$('.box').doc_tree({
+// 		data:data,
+// 		valField:'key',
+// 		indentation:20
+// 	});
+// });
 
 
 // $(function(){
@@ -66,6 +62,16 @@ $(function(){
 
 //     // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
 //     // $cover.show(); // 显示遮罩层
+// });
 
 
+// $(function(){
+// 	$('body').modal_window({
+// 		header:"新建",
+// 		cancel:"取消",
+// 		determine:"保存",
+// 		determineEvent:function($w){
+// 			console.log($w);
+// 		}
+// 	});
 // });

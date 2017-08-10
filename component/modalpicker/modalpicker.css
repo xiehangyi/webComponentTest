@@ -1,0 +1,62 @@
+.modalpicker {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -200px;
+	margin-left: -400px;
+	width: 800px;
+	height: 472px;
+	background-color: #fff;
+	z-index: 1010;
+	border-radius: 8px;
+	box-shadow: 10px 10px 5px #888888;
+}
+
+.modalpicker .modalpicker-header {
+
+	height: 60px;
+	padding: 0 20px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.modalpicker .modalpicker-header .modalpicker-header-title {
+	line-height: 60px;
+}
+
+.modalpicker .modalpicker-dismiss {
+	display: inline-block;
+	float: right;
+
+	line-height: 60px;
+	color: #aaa;
+	cursor: pointer;
+}
+
+.modalpicker .modalpicker-body {
+	height: 350px;
+	padding: 0 40px;
+	overflow-y: auto;
+	
+}
+
+.modalpicker .modalpicker-footer {
+	height: 40px;
+	border-top: 1px solid #e6e6e6;
+	padding: 10px 20px;
+}
+
+.modalpicker .modalpicker-footer .btn {
+	display: inline-block;
+	float: right;
+	width: 80px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.modalpicker .determine {
+	background-color: #4a90e2;
+	color: #fff;
+	border-radius: 4px;
+}
