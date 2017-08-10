@@ -7,6 +7,7 @@
         data:"", // 数据源
         url:"", // 请求地址
         queryParam:"", // 若设置了url，需要有参数时填写
+        width:200,
         indentation:10, // 父级与子级之间的缩进距离
         action:null, // 点击不可展开项后的执行事件
 	};
@@ -42,6 +43,7 @@
 		build_view.call(this);
 		bind_events.call(this);
 		load_data.call(this);
+		adj_by_options.call(this);
 	}
 
 	function url_request(){
@@ -90,7 +92,7 @@
 					}
 				});
 			}
-			
+
 			eventUtil.stopPropagation(e);
 		});
 
@@ -105,6 +107,18 @@
 	function load_data(){
 
 
+	}
+
+	function adj_by_options(){
+		var $el = this.$el,
+			options = this.options;
+
+		$el.find('.doc-tree-item-ul').css({
+			'width':options.width+'px'
+		});
+		$el.find('.doc-tree-item-style').css({
+			'width':options.width+'px'
+		});
 	}
 
 	function build_doc_tree(options,data){

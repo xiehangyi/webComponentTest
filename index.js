@@ -43,29 +43,29 @@ var data = [
     }
 ];
 
-// $(function(){
-// 	$('.box').doc_tree({
-// 		data:data,
-// 		valField:'key',
-// 		indentation:30
-// 	});
-// });
-
-
 $(function(){
-
-    $('.pulldown_tree').pulldown_tree({
-    	data:data,
-        direction:'bottom',
-        width:150,
-        action:function(id,val){
-            console.log(id);
-            console.log(val);
-        }
-    });
-
-    // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
-    // $cover.show(); // 显示遮罩层
-
-
+	$('.box').doc_tree({
+		data:data,
+		valField:'key',
+		indentation:20
+	});
 });
+
+
+// $(function(){
+
+//     $('.pulldown_tree').pulldown_tree({
+//     	data:data,
+//         direction:'bottom',
+//         width:150,
+//         action:function(id,val){
+//             console.log(id);
+//             console.log(val);
+//         }
+//     });
+
+//     // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
+//     // $cover.show(); // 显示遮罩层
+
+
+// });
