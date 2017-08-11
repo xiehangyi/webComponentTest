@@ -31,23 +31,10 @@ body {
 	border: 1px solid #ddd;
 }
 
-
-
-
-
-
-.pulldown_tree .caret-top {
-	
-}
-
-.pulldown_tree .caret-bottom {
-	
-}
-
-.pulldown_tree .caret-left{
-	
-}
-
-.pulldown_tree .caret-right {
-	
+.main .box {
+	width: 30px;
+	height: 30px;
+	margin-top: 30px;
+	background-color: #000;
+	cursor: pointer;
 }

@@ -1,3 +1,8 @@
+.modalpicker li,ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
 .modalpicker {
 	position: absolute;
 	top: 50%;
@@ -13,7 +18,6 @@
 }
 
 .modalpicker .modalpicker-header {
-
 	height: 60px;
 	padding: 0 20px;
 	border-bottom: 1px solid #e6e6e6;
@@ -26,7 +30,6 @@
 .modalpicker .modalpicker-dismiss {
 	display: inline-block;
 	float: right;
-
 	line-height: 60px;
 	color: #aaa;
 	cursor: pointer;
@@ -34,9 +37,60 @@
 
 .modalpicker .modalpicker-body {
 	height: 350px;
-	padding: 0 40px;
+	padding: 0 20px 0 0;
 	overflow-y: auto;
-	
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-select {
+	float: left;
+	width: 50px;
+	height: 310px;
+	max-height: 310px;
+	padding: 20px 10px;
+	text-align: center;
+	border-right: 1px solid #e6e6e6;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-select .modalpicker-options-item {
+	height: 40px;
+	line-height: 40px;
+	cursor: pointer;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-select .modalpicker-options-item:hover {
+	background-color: #e6e6e6;
+}
+
+.modalpicker .modalpicker-options-item.active {
+	color: #4a90e2;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-left {
+	float: left;
+	width: 310px;
+	height: 310px;
+	max-height: 310px;
+	padding: 20px;
+	border-right: 1px solid #e6e6e6;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-left li,.modalpicker .modalpicker-body .modalpicker-body-right li {
+	padding: 0 10px;
+	height: 35px;
+	line-height: 35px;
+	cursor: pointer;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-left li:hover,.modalpicker .modalpicker-body .modalpicker-body-right li:hover {
+	background-color: #e6e6e6;
+}
+
+.modalpicker .modalpicker-body .modalpicker-body-right {
+	float: left;
+	width: 310px;
+	height: 310px;
+	max-height: 310px;
+	padding: 20px;
 }
 
 .modalpicker .modalpicker-footer {

@@ -1,10 +1,12 @@
 (function($,window){
 
 	var DEFAULT = {
+		key:"",
 		idField:"id",
 		valField:"val",
 		data:"",
 		title:"新增",
+		options_item:[{id:1,val:'模块'}]
 	};
 
 	var html = {
@@ -23,32 +25,110 @@
 		this.options = $.extend({},DEFAULT,options);
 
 		init.call(this);
+		return this.modalpicker;
 	};
 
 	function init(){
-		if(data !== ""){
-			build_view.call(this);
-			bind_events.call(this);
-			load_data.call(this);
+		var $modalpicker = $('#modalpicker-'+this.options.key);
+		if($modalpicker.length === 0) {
+			if(data !== ''){
+				data_request.call(this);
+			} else if(url !== '' ) {
+				url_request.call(this);
+			}
+		} else {
+			var $cover = xhy_view_utils.cover_layer();
+			$cover.show();
+			$modalpicker.show();
 		}
+	}
+
+	function data_request(){
+		build_view.call(this);
+		bind_events.call(this);
+		load_data.call(this);
+	}
+
+	function url_request(){
+		var options = this.options,
+			id = options.options_item[0].id,
+			queryParam = $.extend({},options.queryParam,{id:id});
+		xhy_data_utils.ajax(
+			'post',
+			options.url,
+			queryParam,
+			function(){
+				data_request.call(this);
+			}
+		);
 	}
 
 	function build_view(){
 		var $el = this.$el,
 			options = this.options,
 			$body = $('body'),
-			content = '';
-
-		var $cover = xhy_view_utils.cover_layer();
+			$modalpicker = '';
+				
+		$cover = xhy_view_utils.cover_layer();
 		$cover.show();
 
-		content = build_view_content(options);
+		$modalpicker = $(build_view_content(options));
 
-		$body.append($(content));
+		$body.append($modalpicker);
 
+		this.$modalpicker = $modalpicker;
+		this.$cover = $cover;
 	}
 
 	function bind_events(){
+		var $el = this.$el,
+			options = this.options,
+			$modalpicker = this.$modalpicker,
+			$cover = this.$cover,
+			$left = $modalpicker.find('.modalpicker-body-left'),
+			$right = $modalpicker.find('.modalpicker-body-right'),
+			$dismiss = $modalpicker.find('.modalpicker-dismiss'),
+			$cancel = $modalpicker.find('.cancel');
+
+		$left.find('.modalpicker-item-li').click(function(){
+			var $this = $(this);
+
+			$right.append($this.clone());
+			$this.hide();
+		});
+
+		$right.on('click','.modalpicker-item-li',function(){
+			var $this = $(this),
+			    id = $this.attr('id');
+			
+			$left.find('#'+id).show();
+			$this.remove();
+		});
+
+
+		$dismiss.click(function(){
+			$modalpicker.hide();
+			$cover.hide();
+		});
+
+		$cancel.click(function(){
+			$modalpicker.hide();
+			$cover.hide();
+		});
+
+
+		$modalpicker.find('.modalpicker-body-select .modalpicker-options-item').click(function(){
+			var $this = $(this),
+				id = $this.data('id'),
+				queryParam = $.extend({},options.queryParam,{id:id});
+
+			$this.siblings('.active').removeClass('active');
+			$this.addClass('active');
+
+			xhy_data_utils.ajax('post',options.url,options.queryParam,function(){});
+
+
+		});
 
 	}
 
@@ -58,12 +138,14 @@
 
 	function build_view_content(options){
 
-		var content = '<div class="modalpicker">',
+		var content = '<div class="modalpicker" id="modalpicker-'+options.key+'">',
 			header,body,footer;
 
 		header = '<div class="modalpicker-header"><span class="modalpicker-header-title">'+options.title+'</span><span class="modalpicker-dismiss">x</span></div>';
 		
 		body = '<div class="modalpicker-body">';
+
+		body += build_view_options_item(options);
 
 		body += build_view_content_body(options); // 左边
 
@@ -88,7 +170,7 @@
 		    body = '<div class="modalpicker-body-left"><ul>';
 
 		$.each(data,function(i,val){
-			body += '<li><a class="modalpicker-item" data-id="'+val[options.idField]+'">'+val[options.valField]+'</a></li>';
+			body += '<li class="modalpicker-item-li" id="modalpicker-item-li-'+i+'"><a class="modalpicker-item" data-id="'+val[options.idField]+'">'+val[options.valField]+'</a></li>';
 		});
 
 
@@ -97,10 +179,23 @@
 		return body;
 	}
 
+	function build_view_options_item(options) {
+		var options_item = '<div class="modalpicker-body-select">';
+
+		$.each(options.options_item,function(i,val){
+			options_item += '<div class="modalpicker-options-item" data-id="'+val.id+'">'+val.val+'</div>';
+		});
+
+		options_item += '</div>';
+
+		return options_item;
+	}
+
 	/********************************/
 
 	var modalpicker = function(options){
-		new modalpicker_new(this,options);
+		var $modalpicker = new modalpicker_new(this,options);
+		return $modalpicker;
 	};
 
 	$.fn.modalpicker = modalpicker;
