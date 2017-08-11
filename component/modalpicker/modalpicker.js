@@ -6,7 +6,10 @@
 		valField:"val",
 		data:"",
 		title:"新增",
-		options_item:[{id:1,val:'模块'}]
+		options_item:[{id:1,val:'模块'}],
+		action:null,
+		success:null,
+		error:null
 	};
 
 	var html = {
@@ -88,8 +91,10 @@
 			$left = $modalpicker.find('.modalpicker-body-left'),
 			$right = $modalpicker.find('.modalpicker-body-right'),
 			$dismiss = $modalpicker.find('.modalpicker-dismiss'),
-			$cancel = $modalpicker.find('.cancel');
+			$cancel = $modalpicker.find('.cancel'),
+			$determine = $modalpicker.find('.determine');
 
+		// 点击左边item事件
 		$left.find('.modalpicker-item-li').click(function(){
 			var $this = $(this);
 
@@ -97,6 +102,7 @@
 			$this.hide();
 		});
 
+		// 点击右边item事件
 		$right.on('click','.modalpicker-item-li',function(){
 			var $this = $(this),
 			    id = $this.attr('id');
@@ -106,17 +112,26 @@
 		});
 
 
+		// 关闭事件
 		$dismiss.click(function(){
 			$modalpicker.hide();
 			$cover.hide();
 		});
 
+		// 取消事件
 		$cancel.click(function(){
 			$modalpicker.hide();
 			$cover.hide();
 		});
 
+		// 保存事件
+		$determine.click(function(){
+			var items = $right.find('.modalpicker-item');
+			options.action && options.action(items);
+		});
 
+
+		// 左边选项选择事件
 		$modalpicker.find('.modalpicker-body-select .modalpicker-options-item').click(function(){
 			var $this = $(this),
 				id = $this.data('id'),
@@ -126,8 +141,6 @@
 			$this.addClass('active');
 
 			xhy_data_utils.ajax('post',options.url,options.queryParam,function(){});
-
-
 		});
 
 	}

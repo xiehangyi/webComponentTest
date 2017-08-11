@@ -106,5 +106,19 @@ var xhy_view_utils = {
         // });
         return $cover;
     },
+
+    alert_success:function(text){
+        new modal_alert({
+            type:'success',
+            text:text
+        });
+    },
+
+     alert_error:function(text){
+        new modal_alert({
+            type:'error',
+            text:text
+        });
+    }
     
 }

@@ -1,22 +1,29 @@
-var data = [{id:1,val:'val1'},{id:2,val:'val2'},{id:3,val:'val3'},{id:4,val:'val4'},{id:5,val:'val5'}];
-
 $(function(){
-
-	$('.box').click(function(){
-
-		var key = 'mykey',
-			$this = $(this),
-			$modalpicker = $("#modalpicker-"+key);
-
-		
-		var $modalpicker = $this.modalpicker({
-			key:key,	
-			data:data,
-			options_item:[{id:1,val:"模块1"},{id:2,val:"模块2"},{id:3,val:"模块3"}]
-		});
-		
-	});
+	// xhy_view_utils.alert_error('1121');
+	xhy_view_utils.alert_success('1121');
 });
+
+
+
+
+
+// var data = [{id:1,val:'val1'},{id:2,val:'val2'},{id:3,val:'val3'},{id:4,val:'val4'},{id:5,val:'val5'}];
+// $(function(){
+// 	$('.box.a').click(function(){
+// 		var key = 'mykey',
+// 			$this = $(this),
+// 			$modalpicker = $("#modalpicker-"+key);
+// 		var $modalpicker = $this.modalpicker({
+// 			key:key,	
+// 			data:data,
+// 			options_item:[{id:1,val:"模块1"},{id:2,val:"模块2"},{id:3,val:"模块3"}],
+// 			action:function(s){
+// 			}
+// 		});
+// 	});
+// });
+
+
 // var data = [
 //     {
 //         id:1,
@@ -42,7 +49,6 @@ $(function(){
 //                 id:221,
 //                 key:'key221'
 //             }]
-
 //         },{
 //             id:23,
 //             key:'key23'
