@@ -22,7 +22,6 @@
 			modal_alert = '',
 			$modal_alert = '';
 
-
 		modal_alert += '<div class="modal-alert" style="display:none;">';
 
 		modal_alert += '<span class="alert-icon alert-icon-'+options.type+'"></span>';
@@ -34,6 +33,7 @@
 		modal_alert += '</div>';
 
 		$modal_alert = $(modal_alert);
+
 
 
 		$body.append($modal_alert);
@@ -53,4 +53,4 @@
 	window.modal_alert = modal_alert;
 
 
-})(jQuery,window)
+})(jQuery,window);

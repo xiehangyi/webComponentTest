@@ -2,7 +2,7 @@
 
     var DEFAULT = {
         idField:"id", // id字段名
-        keyField:"key",  // key字段名
+        valField:"key",  // key字段名
         childrenField:"children", // children字段名
         data:"", // 数据源
         url:"", // 请求地址
@@ -54,7 +54,6 @@
     function data_request(){
         build_view.call(this);
         bind_event.call(this);
-        load_data.call(this);
         adj_by_options.call(this);
     }
 
@@ -102,7 +101,7 @@
         // 点击元素出现下拉树
         $el.click(function(e){
             var $tree_box = $(this).find('.pulldown-tree-box:first');
-            
+
             $tree_box.show();
             $tree_box.animate({'height':$tree_box.data('height')+'px'},'normal');
 
@@ -153,7 +152,7 @@
             // 隐藏下拉树
             $boxes.animate({'height':'0'},'normal');
             $boxes.hide();
-            
+
             // 绑定数据
             $el.find(".pulldown-tree-val").data('id',id);
             $el.find(".pulldown-tree-val").text(val);
@@ -214,14 +213,14 @@
         $.each(data,function(i,val){
             if (val.hasOwnProperty(options.childrenField)) {
 
-                wrap_html += '<li><div class="pulldown-tree-children pulldown-tree-item"><span data-id="'+val[options.idField]+'">'+val[options.keyField]+'</span>';
+                wrap_html += '<li><div class="pulldown-tree-children pulldown-tree-item"><span data-id="'+val[options.idField]+'">'+val[options.valField]+'</span>';
 
                 wrap_html += traversal_build(options,val[options.childrenField]);
 
                 wrap_html += '</div></li>';
 
             } else {
-                wrap_html += '<li><div class="pulldown-tree-single pulldown-tree-item"><span class="span-val" data-id="'+val[options.idField]+'">'+val[options.keyField]+'</span></div></li>';
+                wrap_html += '<li><div class="pulldown-tree-single pulldown-tree-item"><span class="span-val" data-id="'+val[options.idField]+'">'+val[options.valField]+'</span></div></li>';
             }
         });
 

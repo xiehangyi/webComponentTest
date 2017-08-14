@@ -49,7 +49,6 @@
 	function data_request(){
 		build_view.call(this);
 		bind_events.call(this);
-		load_data.call(this);
 	}
 
 	function url_request(){
@@ -71,7 +70,7 @@
 			options = this.options,
 			$body = $('body'),
 			$modalpicker = '';
-				
+
 		$cover = xhy_view_utils.cover_layer();
 		$cover.show();
 
@@ -106,7 +105,7 @@
 		$right.on('click','.modalpicker-item-li',function(){
 			var $this = $(this),
 			    id = $this.attr('id');
-			
+
 			$left.find('#'+id).show();
 			$this.remove();
 		});
@@ -155,7 +154,7 @@
 			header,body,footer;
 
 		header = '<div class="modalpicker-header"><span class="modalpicker-header-title">'+options.title+'</span><span class="modalpicker-dismiss">x</span></div>';
-		
+
 		body = '<div class="modalpicker-body">';
 
 		body += build_view_options_item(options);
@@ -163,9 +162,9 @@
 		body += build_view_content_body(options); // 左边
 
 		body += '<div class="modalpicker-body-right"></div>'; // 右边
-		
+
 		body += '</div>';
-		
+
 		footer = '<div class="modalpicker-footer"><div class="btn determine">确定</div><div class="btn cancel">取消</div></div>';
 
 

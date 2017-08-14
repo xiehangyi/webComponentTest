@@ -42,7 +42,6 @@
 	function data_request(){
 		build_view.call(this);
 		bind_events.call(this);
-		load_data.call(this);
 		adj_by_options.call(this);
 	}
 

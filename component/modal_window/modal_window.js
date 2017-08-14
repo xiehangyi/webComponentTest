@@ -23,7 +23,6 @@
 
 		build_view.call(this);
 		bind_events.call(this);
-		load_data.call(this);
 	};
 
 	function build_view(){
