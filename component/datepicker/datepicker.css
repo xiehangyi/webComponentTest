@@ -7,7 +7,7 @@
     top: 100%;
     left: 0;
     width: 300px;
-    min-height: 300px;
+    min-height: 260px;
     padding: 5px 5px 0 5px;
     background-color: #fff;
     z-index: 2000;
@@ -37,11 +37,7 @@
     border-left: 1px solid transparent;
     border-right: 10px solid transparent;
     border-top: 11px solid #aaa;
-    // top:20px;
-    // left:-20px;
-    // border-top:5px solid transparent;
-    // border-right:10px solid green;
-    // border-bottom:5px solid transparent;
+    cursor: pointer;
 }
 
 .datepicker .datepicker-icon-next {
@@ -53,6 +49,7 @@
     border-left: 10px solid transparent;
     border-right: 1px solid transparent;
     border-top: 11px solid #aaa;
+    cursor: pointer;
 }
 
 .datepicker .datepicker-header .datepicker-year-month{

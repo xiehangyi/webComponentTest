@@ -7,8 +7,6 @@
     var DEFAULT = { // 公有
         style:"",
         years:10,
-        key:"key",
-        $datepicker:null
     };
 
     var interval = { // 私有
@@ -18,47 +16,29 @@
         day:""
     };
 
-    var html = {
-        header:
-        '<div class="datepicker-year">'+
-            '<span class="datepicker-icon-pre"></span>'+
-            '<span class="datepicker-year-text"></span>'+
-            '<span class="datepicker-icon-next"></span>'+
-        '</div>',
-
-        header_month:
-        '<div class="datepicker-month">'+
-            '<span class="datepicker-icon-pre"></span>'+
-            '<span class="datepicker-month-text"></span>'+
-            '<span class="datepicker-icon-next"></span>'+
-        '</div>',
-
-
-    }
-
     var datepicker_new = function(el,options){
         this.$el = $(el);
         this.$el.css('position','relative');
         this.options = $.extend({},DEFAULT,options);
 
-        interval.year = interval.date.getFullYear();
-        interval.month = interval.date.getMonth();
-        interval.day = interval.date.getDate();
         this.interval = interval;
+        this.interval.year = this.interval.date.getFullYear();
+        this.interval.month = this.interval.date.getMonth();
+        this.interval.day = this.interval.date.getDate();
 
         init.call(this);
     };
 
-
     function init(){
-        var $datepicker = $(".datepicker-"+this.options.key);
+        var $datepicker = this.$el.find('.datepicker');
         if($datepicker.length === 0) {
             build_view.call(this);
             bind_events.call(this);
-        } else {
-            $datepicker.show();
-        }
 
+            this.$datepicker.fadeIn('slow',null);
+        } else {
+            $datepicker.fadeIn('slow',null);
+        }
     }
 
     function build_view(){
@@ -67,23 +47,18 @@
             datepicker,
             $datepicker;
 
-        datepicker = '<div class="datepicker datepicker-'+options.key+'">';
+        datepicker = '<div class="datepicker" style="display:none;">';
 
         datepicker += build_header.call(this);
-
         datepicker += build_body.call(this);
-
         datepicker += build_footer.call(this);
 
         datepicker += '</div>';
 
         $datepicker = $(datepicker);
-
         $datepicker.appendTo($el);
 
         this.$datepicker = $datepicker;
-
-        // $el.append($(datepicker));
     }
 
     function bind_events(){
@@ -97,11 +72,15 @@
 
         $year.change(function(){
             that.interval.year = $(this).val();
+            that.interval.month = $month.val()-1;
+            that.interval.day = $body.find('tbody td > .active').attr('val');
             update_body_day.call(that);
         });
 
         $month.change(function(){
             that.interval.month = $(this).val()-1;
+            that.interval.year = $year.val();
+            that.interval.day = $body.find('tbody td > .active').attr('val');
             update_body_day.call(that);
         });
 
@@ -137,16 +116,16 @@
         });
 
         $footer.find('.datepicker-dismiss').click(function(e){
-            $datepicker.hide();
             eventUtil.stopPropagation(e);
+            $datepicker.fadeOut('slow', null);
         });
 
         $body.on('click.td','tbody td',function(){
             var $this = $(this);
+            that.interval.day = $this.val();
             $this.closest('tbody').find('a.active').removeClass('active');
             $this.children('a').addClass('active');
         });
-
     }
 
     /***************************/
@@ -227,11 +206,9 @@
             body += '<div class="datepicker-body"><table>';
 
             body += build_body_week.call(this);
-
             body += build_body_day.call(this);
 
             body += '</table></div>';
-
 
         return body;
     }
@@ -254,13 +231,13 @@
             interval = this.interval,
             year = interval.year,
             month = interval.month,
-            day = interval.day,
+            day = parseInt(interval.day),
             days_in_month = [31,28,31,30,31,30,31,31,30,31,30,31],
             first_date = new Date(year+"-"+(month+1)+"-"+1),
             first_day = first_date.getDay(),
             remainder = 7-first_day;
 
-        if(year%4 === 0 && year%400 === 0){
+        if(year%4 === 0 || year%400 === 0){
             days_in_month[1] = 29;
         }
 
@@ -318,9 +295,6 @@
         new datepicker_new(this,options);
     };
 
-
     $.fn.datepicker = datepicker;
 
-
 })(jQuery,window);
-

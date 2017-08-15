@@ -1,10 +1,7 @@
 $(function(){
     $('.box.a').click(function(){
-        $(this).datepicker({
-            key:'my-key'
-        });
+        $(this).datepicker({});
     });
-
 });
 
 
