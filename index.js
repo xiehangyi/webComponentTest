@@ -1,6 +1,21 @@
 $(function(){
     $('.box.a').click(function(){
-        $(this).datepicker({});
+        // var dp = $(this).datepicker({
+        //     select:function(y,m,d){
+        //         dp.hide();
+        //         console.log(y,m,d);
+        //     }
+        // });
+        // dp.show();
+
+        var dp = new datepicker_new(this,{
+            direction:'bottom',
+            select:function(y,m,d) {
+                dp.hide();
+                console.log(y,m,d);
+            }
+        });
+        dp.show();
     });
 });
 

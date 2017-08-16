@@ -2,9 +2,15 @@
  * author xhy
  * date 2017/8/14
  */
+.datepicker-input {
+    width: 200px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+}
 .datepicker {
     position: absolute;
-    top: 100%;
+    top: 0;
     left: 0;
     width: 300px;
     min-height: 260px;

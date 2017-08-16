@@ -7,6 +7,8 @@
     var DEFAULT = { // 公有
         style:"",
         years:10,
+        direction:'bottom',
+        select:null
     };
 
     var interval = { // 私有
@@ -15,6 +17,10 @@
         month:"",
         day:""
     };
+
+    var html = {
+        input:'<input type="text" class="datepicker-input">'
+    }
 
     var datepicker_new = function(el,options){
         this.$el = $(el);
@@ -27,26 +33,35 @@
         this.interval.day = this.interval.date.getDate();
 
         init.call(this);
+
+        return this;
     };
 
     function init(){
         var $datepicker = this.$el.find('.datepicker');
-        if($datepicker.length === 0) {
+        if($datepicker.length === 0){
             build_view.call(this);
             bind_events.call(this);
-
-            this.$datepicker.fadeIn('slow',null);
+            adj_by_options.call(this);
         } else {
-            $datepicker.fadeIn('slow',null);
+            return;
         }
     }
 
+    /**
+     * 构建视图
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_view(){
         var $el = this.$el,
             options = this.options,
             datepicker,
-            $datepicker;
+            $datepicker,
+            $input;
 
+        // 构建datepicker
         datepicker = '<div class="datepicker" style="display:none;">';
 
         datepicker += build_header.call(this);
@@ -56,14 +71,30 @@
         datepicker += '</div>';
 
         $datepicker = $(datepicker);
-        $datepicker.appendTo($el);
+
+        // // 构建输入框
+        // $input = $(html.input);
+        // $input.css('height',$el.height()-5);
+
+        // $el.append($input).append($datepicker);
+
+        $el.append($datepicker);
 
         this.$datepicker = $datepicker;
+        this.$input = $input;
     }
 
+    /**
+     * 绑定事件
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function bind_events(){
-        var $datepicker = this.$datepicker,
-            that = this,
+        var that = this,
+            options = this.options,
+            $datepicker = that.$datepicker,
+            $input = that.$input,
             $header = $datepicker.find('.datepicker-header'),
             $year = $header.find('#datepicker-year'),
             $month = $header.find('#datepicker-month'),
@@ -84,8 +115,11 @@
             update_body_day.call(that);
         });
 
-        $header.find('.datepicker-icon-pre').click(function(){
+        $header.find('.datepicker-icon-pre').click(function(e){
             var val = $month.val() - 1;
+
+            eventUtil.stopPropagation(e);
+
             if(val === 0){
                 return;
             }
@@ -93,8 +127,11 @@
             $month.change();
         });
 
-        $header.find('.datepicker-icon-next').click(function(){
+        $header.find('.datepicker-icon-next').click(function(e){
             var val = parseInt($month.val()) + 1;
+
+            eventUtil.stopPropagation(e);
+
             if(val === 13){
                 return;
             }
@@ -102,8 +139,10 @@
             $month.change();
         });
 
-        $footer.find('.datepicker-now').click(function(){
-            var date = new Date();
+        $footer.find('.datepicker-now').click(function(e){
+            var date = that.interval.date;
+
+            eventUtil.stopPropagation(e);
 
             $year.val(date.getFullYear());
             $month.val(date.getMonth()+1);
@@ -117,19 +156,54 @@
 
         $footer.find('.datepicker-dismiss').click(function(e){
             eventUtil.stopPropagation(e);
+
             $datepicker.fadeOut('slow', null);
         });
 
-        $body.on('click.td','tbody td',function(){
+        $body.on('click.td','tbody td a',function(e){
             var $this = $(this);
-            that.interval.day = $this.val();
+
+            eventUtil.stopPropagation(e);
+
+            that.interval.day = parseInt($this.attr('val'));
             $this.closest('tbody').find('a.active').removeClass('active');
-            $this.children('a').addClass('active');
+            $this.addClass('active');
+
+            options.select && options.select($year.val(),$month.val(),$this.attr('val'));
         });
+    }
+
+    /**
+     * 根据配置做调整
+     * @Author   xhy
+     * @DateTime 2017-08-16
+     * @return   {[type]}   [description]
+     */
+    function adj_by_options(){
+        var options = this.options,
+            $datepicker = this.$datepicker;
+        // 调整位置
+        if(options.direction === 'right') {
+            $datepicker.css({
+                'top':'0',
+                'left':'100%'
+            });
+        } else if(options.direction === 'bottom') {
+            $datepicker.css({
+                'top':'100%',
+                'left':'0'
+            });
+        }
     }
 
     /***************************/
 
+    /**
+     * 构建视图头部
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_header(){
         var header='',
             $el = this.$el,
@@ -155,6 +229,12 @@
         return header;
     }
 
+    /**
+     * 构建头部的年份
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_header_year(){
         var year = "",
             options = this.options,
@@ -179,6 +259,12 @@
         return year;
     }
 
+    /**
+     * 构建头部的月份
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_header_month(){
         var month = "",
             interval = this.interval,
@@ -200,6 +286,12 @@
 
     }
 
+    /**
+     * 构建主体
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_body(){
         var body = '';
 
@@ -213,6 +305,12 @@
         return body;
     }
 
+    /**
+     * 构建主体星期
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_body_week(){
         var week = '<thead><tr>',
             week_day = ['日','一','二','三','四','五','六'];
@@ -226,6 +324,12 @@
         return week;
     }
 
+    /**
+     * 构建主体日期
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_body_day() {
         var days = '<tbody>',
             interval = this.interval,
@@ -269,6 +373,12 @@
         return days;
     }
 
+    /**
+     * 切换年份或月份时，更新日期状态
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function update_body_day(){
         var $datepicker = this.$datepicker,
             $table = $datepicker.find('.datepicker-body table');
@@ -277,6 +387,12 @@
         $table.append($(build_body_day.call(this)));
     }
 
+    /**
+     * 构建尾部，主要是两个按钮
+     * @Author   xhy
+     * @DateTime 2017-08-15
+     * @return   {[type]}   [description]
+     */
     function build_footer(){
         var footer = '';
 
@@ -291,10 +407,23 @@
         return footer;
     }
 
-    var datepicker = function(options){
-        new datepicker_new(this,options);
-    };
+    datepicker_new.prototype = {
+        show:function(){
+            this.$el.find('.datepicker').fadeIn('slow',null);
+        },
+        hide:function(){
+            this.$el.find('.datepicker').fadeOut('slow',null);
+        }
+    }
 
-    $.fn.datepicker = datepicker;
+    window.datepicker_new = datepicker_new;
+
+    // var datepicker = function(options){
+    //     var datepicker = new datepicker_new(this,options);
+
+    //     return datepicker;
+    // };
+
+    // $.fn.datepicker = datepicker;
 
 })(jQuery,window);
