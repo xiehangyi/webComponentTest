@@ -10,6 +10,7 @@ $(function(){
 
         var dp = new datepicker_new(this,{
             direction:'bottom',
+            language:'en',
             select:function(y,m,d) {
                 dp.hide();
                 console.log(y,m,d);

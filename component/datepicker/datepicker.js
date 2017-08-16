@@ -8,22 +8,34 @@
         style:"",
         years:10,
         direction:'bottom',
-        select:null
+        select:null,
+        language:'ch'
     };
 
     var interval = { // 私有
         date:new Date(),
-        year:"",
-        month:"",
-        day:""
+        year:0,
+        month:0,
+        day:0
     };
 
-    html = {
-        footer:
-        '<div class="datepicker-footer">'+
-            '<div class="btn datepicker-now">现在</div>'+
-            '<div class="btn datepicker-dismiss">关闭</div>'+
-        '</div>'
+    var internation = {
+        ch:{
+            week: ['日','一','二','三','四','五','六'],
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月","十月", "十一月", "十二月"],
+            years: '年',
+            now: '现在',
+            close: '关闭'
+        },
+
+        en:{
+            week: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+            months: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            years: '',
+            now: 'now',
+            close: 'close'
+        }
+
     }
 
     var datepicker_new = function(el,options){
@@ -35,6 +47,8 @@
         this.interval.year = this.interval.date.getFullYear();
         this.interval.month = this.interval.date.getMonth();
         this.interval.day = this.interval.date.getDate();
+
+        this.internation = internation[this.options.language];
 
         init.call(this);
 
@@ -238,15 +252,16 @@
             half_years = years/2,
             interval = this.interval,
             date = interval.date,
-            year_now = date.getFullYear();
+            year_now = date.getFullYear(),
+            years = this.internation.years;
 
         year = '<select id="datepicker-year">';
 
         for(var i = year_now-half_years; i <= year_now+half_years; i++) {
             if(i === year_now){
-                year += '<option value="'+i+'" selected>'+i+"年"+'</option>';
+                year += '<option value="'+i+'" selected>'+i+years+'</option>';
             } else {
-                year += '<option value="'+i+'">'+i+"年"+'</option>';
+                year += '<option value="'+i+'">'+i+years+'</option>';
             }
         }
 
@@ -264,15 +279,16 @@
     function build_header_month(){
         var month = "",
             interval = this.interval,
-            month_now = interval.month+1;
+            month_now = interval.month+1,
+            months = this.internation.months;
 
         month = '<select id="datepicker-month">';
 
         for(var i = 1; i <= 12; i++) {
             if(i === month_now) {
-                month += '<option value="'+i+'" selected>'+i+"月"+'</option>';
+                month += '<option value="'+i+'" selected>'+months[i-1]+'</option>';
             } else {
-                month += '<option value="'+i+'">'+i+"月"+'</option>';
+                month += '<option value="'+i+'">'+months[i-1]+'</option>';
             }
         }
 
@@ -309,7 +325,7 @@
      */
     function build_body_week(){
         var week = '<thead><tr>',
-            week_day = ['日','一','二','三','四','五','六'];
+            week_day = this.internation.week;
 
         for(var i = 0; i < 7; i++) {
             week += '<th><span title="'+"星期"+week_day[i]+'">'+week_day[i]+'</span></th>';
@@ -390,7 +406,15 @@
      * @return   {[type]}   [description]
      */
     function build_footer(){
-        var footer = html.footer;
+        var footer,
+            now = this.internation.now,
+            close = this.internation.close;
+
+        footer =
+        '<div class="datepicker-footer">'+
+            '<div class="btn datepicker-now">'+now+'</div>'+
+            '<div class="btn datepicker-dismiss">'+close+'</div>'+
+        '</div>'
 
         return footer;
     }
@@ -398,9 +422,11 @@
     datepicker_new.prototype = {
         show:function(){
             this.$el.find('.datepicker').fadeIn('slow',null);
+            return this;
         },
         hide:function(){
             this.$el.find('.datepicker').fadeOut('slow',null);
+            return this;
         }
     }
 

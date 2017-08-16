@@ -46,6 +46,10 @@
     cursor: pointer;
 }
 
+.datepicker .datepicker-icon-pre:hover {
+    border-top-color: #333;
+}
+
 .datepicker .datepicker-icon-next {
     float: right;
     width: 0;
@@ -56,6 +60,10 @@
     border-right: 1px solid transparent;
     border-top: 11px solid #aaa;
     cursor: pointer;
+}
+
+.datepicker .datepicker-icon-next:hover {
+    border-top-color: #333;
 }
 
 .datepicker .datepicker-header .datepicker-year-month{
