@@ -18,8 +18,12 @@
         day:""
     };
 
-    var html = {
-        input:'<input type="text" class="datepicker-input">'
+    html = {
+        footer:
+        '<div class="datepicker-footer">'+
+            '<div class="btn datepicker-now">现在</div>'+
+            '<div class="btn datepicker-dismiss">关闭</div>'+
+        '</div>'
     }
 
     var datepicker_new = function(el,options){
@@ -71,12 +75,6 @@
         datepicker += '</div>';
 
         $datepicker = $(datepicker);
-
-        // // 构建输入框
-        // $input = $(html.input);
-        // $input.css('height',$el.height()-5);
-
-        // $el.append($input).append($datepicker);
 
         $el.append($datepicker);
 
@@ -205,26 +203,24 @@
      * @return   {[type]}   [description]
      */
     function build_header(){
-        var header='',
+        var header,
             $el = this.$el,
             options = this.options,
             interval = this.interval;
 
-        header = '<div class="datepicker-header">';
-
-        header += '<span class="datepicker-icon-pre"></span>';
-
-        header +='<div class="datepicker-year-month">';
+        header =
+        '<div class="datepicker-header">'+
+            '<span class="datepicker-icon-pre"></span>'+
+            '<div class="datepicker-year-month">';
 
         header += build_header_year.call(this);
 
         header += build_header_month.call(this);
 
-        header += '</div>';
-
-        header += '<span class="datepicker-icon-next"></span>';
-
-        header += '</div>';
+        header +=
+            '</div>'+
+            '<span class="datepicker-icon-next"></span>'+
+        '</div>';
 
         return header;
     }
@@ -331,7 +327,7 @@
      * @return   {[type]}   [description]
      */
     function build_body_day() {
-        var days = '<tbody>',
+        var days,
             interval = this.interval,
             year = interval.year,
             month = interval.month,
@@ -345,7 +341,7 @@
             days_in_month[1] = 29;
         }
 
-        days += '<tr>';
+        days = '<tbody><tr>';
 
         for(var i = 0; i < first_day; i++){
             days += '<td></td>';
@@ -363,7 +359,7 @@
                 days += '<td><a href="#" val="'+i+'">'+i+'</a></td>';
             }
 
-            if(i%7 === remainder && i === days_in_month[month]){
+            if(i%7 === remainder || i === days_in_month[month]){
                 days += '</tr>';
             }
 
@@ -394,15 +390,7 @@
      * @return   {[type]}   [description]
      */
     function build_footer(){
-        var footer = '';
-
-        footer = '<div class="datepicker-footer">';
-
-        footer += '<div class="btn datepicker-now">现在</div>';
-
-        footer += '<div class="btn datepicker-dismiss">关闭</div>';
-
-        footer += '</div>';
+        var footer = html.footer;
 
         return footer;
     }
