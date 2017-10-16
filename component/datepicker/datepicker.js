@@ -253,15 +253,15 @@
             interval = this.interval,
             date = interval.date,
             year_now = date.getFullYear(),
-            years = this.internation.years;
+            year_name = this.internation.years;
 
         year = '<select id="datepicker-year">';
 
         for(var i = year_now-half_years; i <= year_now+half_years; i++) {
             if(i === year_now){
-                year += '<option value="'+i+'" selected>'+i+years+'</option>';
+                year += '<option value="'+i+'" selected>'+i+year_name+'</option>';
             } else {
-                year += '<option value="'+i+'">'+i+years+'</option>';
+                year += '<option value="'+i+'">'+i+year_name+'</option>';
             }
         }
 
@@ -280,15 +280,15 @@
         var month = "",
             interval = this.interval,
             month_now = interval.month+1,
-            months = this.internation.months;
+            month_name = this.internation.months;
 
         month = '<select id="datepicker-month">';
 
         for(var i = 1; i <= 12; i++) {
             if(i === month_now) {
-                month += '<option value="'+i+'" selected>'+months[i-1]+'</option>';
+                month += '<option value="'+i+'" selected>'+month_name[i-1]+'</option>';
             } else {
-                month += '<option value="'+i+'">'+months[i-1]+'</option>';
+                month += '<option value="'+i+'">'+month_name[i-1]+'</option>';
             }
         }
 
@@ -305,9 +305,9 @@
      * @return   {[type]}   [description]
      */
     function build_body(){
-        var body = '';
+        var body;
 
-            body += '<div class="datepicker-body"><table>';
+            body = '<div class="datepicker-body"><table>';
 
             body += build_body_week.call(this);
             body += build_body_day.call(this);
@@ -419,6 +419,11 @@
         return footer;
     }
 
+    /**
+     * 原型方法
+     * [prototype description]
+     * @type {Object}
+     */
     datepicker_new.prototype = {
         show:function(){
             this.$el.find('.datepicker').fadeIn('slow',null);

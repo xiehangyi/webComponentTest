@@ -9,6 +9,7 @@ $(function(){
         // dp.show();
 
         var dp = new datepicker_new(this,{
+            years:10,
             direction:'bottom',
             language:'en',
             select:function(y,m,d) {
@@ -17,6 +18,10 @@ $(function(){
             }
         });
         dp.show();
+    });
+
+    $(window).on('resize.a',function(){
+        console.log(2);
     });
 });
 

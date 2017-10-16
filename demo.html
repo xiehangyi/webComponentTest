@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style>
+.box_ex {
+    position:relative;
+    width:200px;
+    height:200px;
+
+}
+.box_ex .line {
+    position:absolute;
+    background-color:#4a90e2;
+}
+.box_ex .line.top {
+    top:0;
+    left:0;
+    width:0;
+    height:1px;
+}
+.box_ex .line.bottom {
+    bottom:0;
+    right:0;
+    width:0;
+    height:1px;
+}
+.box_ex .line.left{
+    left:0;
+    bottom:0;
+    width:1px;
+    height:0;
+}
+.box_ex .line.right{
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 0;
+}
+.box_ex .line.left,.box_ex .line.right {
+    transition:height 0.3s linear;
+}
+.box_ex .line.top,.box_ex .line.bottom {
+    transition:width 0.3s linear;
+}
+.box_ex:hover .line.left,.box_ex:hover .line.right {
+    height:100%;
+}
+.box_ex:hover .line.top,.box_ex:hover .line.bottom {
+    width:100%;
+}
+</style>
+<body>
+<body>
+    <div class="box_ex">
+        <label>abc</label>
+        <label>abc</label>
+        <div class="line left"></div>
+        <div class="line top"></div>
+        <div class="line right"></div>
+        <div class="line bottom"></div>
+    </div>
+</body>
+</body>
+</html>

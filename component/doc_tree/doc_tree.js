@@ -123,7 +123,7 @@
 			idField = options.idField,
 			valField = options.valField,
 			childrenField = options.childrenField,
-			length = data.length * 36;
+			length = data.length * 36,
 			doc_tree_content = '<ul class="doc-tree-item-ul" data-height="'+length+'" style="display:none;height:0;">';
 
 		$.each(_data,function(i,val){
