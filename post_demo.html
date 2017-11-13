@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style>
+    .post {
+        padding:10px;
+        display: flex;
+        flex-direction: column;
+        width: 750px;
+        height: 140px;
+        background-color:#f9f9f9;
+    }
+    .post .time {
+        width: 100%;
+        height: 20px;
+        font-size:12px;
+        color:#333;
+    }
+    .post .post-main {
+        flex:1;
+        padding: 10px 0;
+    }
+    .post .post-main .left {
+        float: left;
+        width: 80px;
+        height: 100%;
+    }
+    .post .post-main .left img {
+        width: 50px;
+        height: 50px;
+    }
+    .post .post-main .right {
+        margin-left: 80px;
+
+        height: 100%;
+    }
+    .post .post-main .right .name {
+        font-weight:bold;
+        color:#666;
+        font-size:14px;
+    }
+    .post .post-main .right .initiate-time {
+        font-size:12px;
+        color:#999;
+    }
+    .post .post-main .right .post-type {
+        float:right;
+        font-size:14px;
+        color:#4a90e2;
+    }
+    .post .post-main .right .executor {
+        font-size:12px;
+        color:#666;
+    }
+    .post .post-main .right .btns {
+        float: right;
+    }
+    .post .post-main .right .btns .btn {
+        font-size:12px;
+        cursor: pointer;
+        float: right;
+        margin-left:10px;
+    }
+    .post .post-main .right .btns .btn::after{
+        float: left;
+        margin-top:3px;
+        color: #aaa;
+    }
+    .post .post-main .right .btns .btn i{
+        background: url('img/img.png') no-repeat;
+        width: 24px;
+        height: 24px;
+        float:left;
+    }
+    .post .post-main .right .btns .reply i{
+        background-position:-992px -343px;
+    }
+    .post .post-main .right .btns .reply:hover i{
+        background-position:-992px -367px;
+    }
+    .post .post-main .right .btns .reply:hover::after {
+        color:#4a90e2;
+    }
+    .post .post-main .right .btns .btn.reply::after {
+        content:'回复';
+    }
+    .post .post-main .right .btns .edit i{
+        background-position:-78px -343px;
+    }
+    .post .post-main .right .btns .edit:hover i{
+        background-position:-234px -343px;
+    }
+    .post .post-main .right .btns .edit:hover::after{
+        color:#4a90e2;
+    }
+    .post .post-main .right .btns .btn.edit::after {
+        content:'编辑';
+    }
+</style>
+<body>
+    <div class="post">
+        <div class="time"><span>2017-11-08</span></div>
+        <div class="post-main">
+            <div class="left">
+                <img src="img/img.png" alt="">
+            </div>
+            <div class="right">
+                <div class="info">
+                    <a class="name">谢杭沂</a>
+                    <a class="initiate-time">2017-11-08&nbsp;14:06&nbsp;发起</a>
+                    <span class="post-type">任务</span>
+                </div>
+                <div class="content">
+                    <p>123123</p>
+                </div>
+                <div class="executor"><span>执行人：谢杭沂</span></div>
+                <div class="btns">
+                    <div class="reply btn"><i></i></div>
+                    <div class="edit btn"><i></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

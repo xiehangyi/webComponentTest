@@ -1,29 +1,29 @@
-$(function(){
-    $('.box.a').click(function(){
-        // var dp = $(this).datepicker({
-        //     select:function(y,m,d){
-        //         dp.hide();
-        //         console.log(y,m,d);
-        //     }
-        // });
-        // dp.show();
+// $(function(){
+//     $('.box.a').click(function(){
+//         // var dp = $(this).datepicker({
+//         //     select:function(y,m,d){
+//         //         dp.hide();
+//         //         console.log(y,m,d);
+//         //     }
+//         // });
+//         // dp.show();
 
-        var dp = new datepicker_new(this,{
-            years:10,
-            direction:'bottom',
-            language:'en',
-            select:function(y,m,d) {
-                dp.hide();
-                console.log(y,m,d);
-            }
-        });
-        dp.show();
-    });
+//         var dp = new datepicker_new(this,{
+//             years:10,
+//             direction:'bottom',
+//             language:'en',
+//             select:function(y,m,d) {
+//                 dp.hide();
+//                 console.log(y,m,d);
+//             }
+//         });
+//         dp.show();
+//     });
 
-    $(window).on('resize.a',function(){
-        console.log(2);
-    });
-});
+//     $(window).on('resize.a',function(){
+//         console.log(2);
+//     });
+// });
 
 
 
@@ -52,37 +52,40 @@ $(function(){
 // });
 
 
-// var data = [
-//     {
-//         id:1,
-//         key:'key1',
-//         children:[{id:11,key:'key11'}]
-//     },
-//     {
-//         id:2,
-//         key:'key2',
-//         children:[
-//         {   id:21,
-//             key:'key21',
-//             children:[
-//             {
-//                 id:211,
-//                 key:'key211'
-//             }]
-//         },{
-//             id:22,
-//             key:'key22',
-//             children:[
-//             {
-//                 id:221,
-//                 key:'key221'
-//             }]
-//         },{
-//             id:23,
-//             key:'key23'
-//         }]
-//     }
-// ];
+var data = [
+    {
+        id:1,
+        key:'key1',
+        children:[{id:11,key:'key11'},{id:12,key:'key12'},{id:13,key:'key13'}]
+    },
+    {
+        id:2,
+        key:'key2',
+        children:[
+        {   id:21,
+            key:'key21',
+            children:[
+            {
+                id:211,
+                key:'key211'
+            }]
+        },{
+            id:22,
+            key:'key22',
+            children:[
+            {
+                id:221,
+                key:'key221'
+            }]
+        },{
+            id:23,
+            key:'key23'
+        },{
+            id:24,
+            key:'key24'
+        }]
+    }
+];
 
 // $(function(){
 // 	$('.box').doc_tree({
@@ -93,21 +96,21 @@ $(function(){
 // });
 
 
-// $(function(){
+$(function(){
 
-//     $('.pulldown_tree').pulldown_tree({
-//     	data:data,
-//         direction:'bottom',
-//         width:150,
-//         action:function(id,val){
-//             console.log(id);
-//             console.log(val);
-//         }
-//     });
+    $('.pulldown_tree').pulldown_tree({
+    	data:data,
+        direction:'bottom',
+        width:150,
+        action:function(id,val){
+            console.log(id);
+            console.log(val);
+        }
+    });
 
-//     // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
-//     // $cover.show(); // 显示遮罩层
-// });
+    // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
+    // $cover.show(); // 显示遮罩层
+});
 
 
 // $(function(){

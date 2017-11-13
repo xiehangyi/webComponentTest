@@ -164,7 +164,7 @@
         });
 
         // 点击body，下拉树消失
-        $body.off('click.pulldown_tree.hide').on('click.pulldown_tree.hide',function(e){
+        $body.on('click.pulldown_tree.hide',function(e){
             var $this = $(this);
             if($this.closest('.pulldown_tree').length == 0){
                 var $boxes = $el.find('.pulldown-tree-box');

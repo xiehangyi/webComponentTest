@@ -1,0 +1,72 @@
+/*
+* @Author: xhy
+* @Date:   2017-11-09 16:04:40
+* @Last Modified by:   xhy
+* @Last Modified time: 2017-11-09 16:04:42
+*/
+    .progress_bar {
+        position: relative;
+        display:inline-block;
+        margin:0 auto;
+        width:364px;
+        height: 100px;
+    }
+    .progress_bar .line {
+        position: absolute;
+        top: 50%;
+        width: 348px;
+        height: 2px;
+        margin-top: -2px;
+        border-top: 1px solid #ccc;
+    }
+    .progress_bar .item {
+        float:left;
+        position:relative;
+        width: 14px;
+        height: 14px;
+        border:1px solid;
+        border-radius: 50%;
+        margin: 40px 100px 40px 0;
+    }
+    .progress_bar .finish {
+        background-color: #45bf7b;
+        border-color: #45bf7b;
+    }
+    .progress_bar .running {
+        background-color: #fff;
+        border-color: #45bf7b;
+    }
+    .progress_bar .running::before {
+        content:'';
+        position:absolute;
+        top: -5px;
+        left: -5px;
+        width:22px;
+        height:22px;
+        border: 1px solid #45bf7b;
+        border-radius:50%;
+    }
+    .progress_bar .running::after {
+        content:'';
+        position:absolute;
+        top: -18px;
+        left: 1px;
+        border:5px solid transparent;
+        border-top-color:#45bf7b;
+    }
+    .progress_bar .unfinish {
+        background-color: #fff;
+        border-color: #ccc;
+    }
+    .progress_bar .item_name {
+        position:absolute;
+        top:20px;
+        left:50%;
+        margin-left:-25px;
+        width:50px;
+        font-size:12px;
+        text-align:center;
+    }
+    .progress_bar .item:last-child {
+        margin-right:0;
+    }
