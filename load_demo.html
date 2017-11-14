@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<link rel="stylesheet" type="text/css" href="component/loading/loading.css">
+<body>
+    <div class="box">
+
+        <!-- <div class="dot" id="dot1"></div>
+        <div class="dot" id="dot2"></div>
+        <div class="dot" id="dot3"></div>
+        <div class="dot" id="dot4"></div>
+        <div class="dot" id="dot5"></div>
+        <div class="dot" id="dot6"></div>
+        <div class="dot" id="dot7"></div>
+        <div class="dot" id="dot8"></div> -->
+
+        <!-- <div class="dot-box" id="dot1"><div class="dot"></div></div>
+        <div class="dot-box" id="dot2"><div class="dot"></div></div>
+        <div class="dot-box" id="dot3"><div class="dot"></div></div>
+        <div class="dot-box" id="dot4"><div class="dot"></div></div>
+        <div class="dot-box" id="dot5"><div class="dot"></div></div>
+        <div class="dot-box" id="dot6"><div class="dot"></div></div>
+        <div class="dot-box" id="dot7"><div class="dot"></div></div>
+        <div class="dot-box" id="dot8"><div class="dot"></div></div> -->
+    </div>
+</body>
+<script type="text/javascript" src="js/js-external/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="component/loading/loading.js"></script>
+<script>
+    $(function(){
+        $('.box').loading('show');
+    });
+</script>
+<!-- <script>
+    $(function(){
+        var $dots = $('.dot-box');
+        $.each($dots,function(i,v){
+            var $v = $(v);
+            var num = 1.1;
+            var left = parseInt($v.css('left'))*num;
+            var top = parseInt($v.css('top'))*num;
+            $v.css('left',left*num+'px');
+            $v.css('top',top*num+'px');
+        })
+
+        // var time = 1000;
+        // $.each($dots,function(i,v){
+        //     var $v = $(v);
+        //     time += 200;
+        //     setTimeout(function(){
+        //         setInterval(function(){
+        //         $v.animate({
+        //             width: '12',
+        //             height: '12'},
+        //             {
+        //                 duration:500,
+        //                 complete:function(){
+        //                     $v.animate({
+        //                         width: '5',
+        //                         height: '5'},
+        //                         {
+        //                             duration:500
+        //                         });
+        //                 }
+        //             });
+        //     },1000);},time);
+        // });
+    });
+
+    $(function(){
+        var direc = 'ck'; // 'cck' 逆时针    'ck' 顺时针
+        var $dots = $('.dot');
+        $.each($dots,function(i,v){
+            var $v = $(v);
+            if(direc == 'cck'){
+                setInterval(function(){
+                    width = $v.width()+1;
+                    height = $v.height()+1;
+                    if(width>12){
+                        $v.css('width',5+'px');
+                        $v.css('height',5+'px');
+                    } else {
+                        $v.css('width',width+'px');
+                        $v.css('height',height+'px');
+                    }
+                },100);
+            } else {
+                setInterval(function(){
+                    width = $v.width()-1;
+                    height = $v.height()-1;
+                    if(width<5){
+                        $v.css('width',12+'px');
+                        $v.css('height',12+'px');
+                    } else {
+                        $v.css('width',width+'px');
+                        $v.css('height',height+'px');
+                    }
+                },100);
+            }
+        });
+    });
+</script> -->
+</html>

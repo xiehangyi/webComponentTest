@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style>
+body {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #222;
+  overflow: hidden;
+}
+
+.firefly, .firefly div {
+  position: relative;
+}
+
+.firefly {
+  width: 20px;
+  height: 20px;
+  border-radius: 70px 70px 0 0;
+  margin: 10% auto;
+  z-index: 1;
+
+  animation: move 5s ease infinite;
+  -moz-animation: move 5s ease infinite;
+  -webkit-animation: move 5s ease infinite;
+  -o-animation: move 20s ease infinite;
+}
+
+.head{
+  background:#1A1515;
+  height:10px;
+  width:20px;
+  border-radius: 90px 90px 0 0;
+  -moz-border-radius: 90px 90px 0 0;
+  -webkit-border-radius: 90px 90px 0 0;
+  top:35px;
+  z-index:4;
+}
+
+.wing {
+  background: #FFFFF9;
+  width: 20px;
+  height: 20px;
+  border-radius: 40px;
+  transform: rotate(110deg) skew(40deg);
+  -o-transform: rotate(110deg) skew(40deg);
+  -moz-transform: rotate(110deg) skew(40deg);
+  -webkit-transform: rotate(80deg) skew(40deg);
+  z-index: 3;
+}
+
+.wing.left{
+  top:30px;
+  left:-5px;
+}
+
+.wing.right{
+  top:10px;
+  left:5px;
+  transform: rotate(30deg) skew(40deg);
+  -o-transform: rotate(30deg) skew(40deg);
+  -moz-transform: rotate(30deg) skew(40deg);
+  -webkit-transform: rotate(30deg) skew(40deg);
+}
+
+.glow {
+  border-radius: 0 0 70px 70px;
+  width: 60%;
+  height: 70%;
+  background: #FBFF7A;
+  margin: 0 auto;
+  z-index: 2;
+  animation: glowing 1s linear infinite alternate;
+  -webkit-animation: glowing 1s linear infinite alternate;
+  transition: 1s all;
+}
+
+.shadow {
+  background: #1A1515;
+  width: 100%;
+  height: 25%;
+  border-radius: 200%;
+  margin-top: -10%;
+}
+
+//glowing animation
+
+@keyframes glowing {
+  from {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 50px 10px #E8D500, inset 0 0 80px 80px #FFED24;
+  }
+  to {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 100px 10px #E8D500, inset 0 0 50px 50px #FFED24;
+  }
+}
+
+@-webkit-keyframes glowing {
+  from {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 50px 10px #E8D500, inset 0 0 80px 80px #FFED24;
+  }
+  to {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 130px 10px #E8D500, inset 0 0 50px 50px #FFED24;
+  }
+}
+
+@-moz-keyframes glowing {
+  from {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 50px 10px #E8D500, inset 0 0 80px 80px #FFED24;
+  }
+  to {
+    box-shadow: inset 0 0 20px 20px #E8D500, 0 0 130px 10px #E8D500, inset 0 0 50px 50px #FFED24;
+  }
+}
+
+//moving animation
+
+@keyframes move
+{
+0%   {left:0px; top:0px; transform: rotate(45deg);}
+50%{left: 0px; top:0px; transform: rotate(-45deg);}
+100% {left: 0px; top:0px; transform: rotate(45deg);}
+}
+
+@-webkit-keyframes move
+{
+0%   {left:0px; top:0px; -webkit-transform: rotate(45deg);}
+50%{left: 0px; top:0px;  -webkit-transform: rotate(-45deg);}
+100% {left: 0px; top:0px;  -webkit-transform: rotate(45deg);}
+}
+
+@-moz-keyframes move
+{
+0%   {left:0px; top:0px; -moz-transform: rotate(45deg);}
+50%{left: 0px; top:0px;  -moz-transform: rotate(-45deg);}
+100% {left: 0px; top:0px;  -moz-transform: rotate(45deg);}
+}
+
+@-o-keyframes move
+{
+0%   {left:0px; top:0px; -webkit-transform: rotate(45deg);}
+50%{left: 0px; top:0px;  -webkit-transform: rotate(-45deg);}
+100% {left: 0px; top:0px;  -webkit-transform: rotate(45deg);}
+}
+</style>
+<body>
+    <div class="firefly">
+      <div class="head"></div>
+      <div class="wing left"></div>
+      <div class="wing right"></div>
+      <div class="glow"></div>
+      <div class="shadow"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+/*
+* @Author: xhy
+* @Date:   2017-11-13 11:34:01
+* @Last Modified by:   xhy
+* @Last Modified time: 2017-11-14 14:57:36
+*/
+.box {
+    position:absolute;
+    width:100px;
+    height:100px;
+    top:50%;
+    left:50%;
+    margin-top:-50px;
+    margin-left:-50px;
+    /* animation:rotating 1ms infinite; */
+}
+.box .dot-box {
+    position:absolute;
+    width:12px;
+    height:12px;
+}
+.box .dot-box .dot {
+    position:absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+}
+#dot1 {
+    left:20px;
+    top:0;
+}
+#dot1 .dot {
+    width: 5px;
+    height: 5px;
+
+    /* width: 12px;
+    height: 12px; */
+}
+
+#dot2 {
+    left:34px;
+    top:6px;
+}
+#dot2 .dot {
+    width: 6px;
+    height: 6px;
+
+    /* width: 11px;
+    height: 11px; */
+}
+
+#dot3 {
+    left:40px;
+    top:20px;
+}
+#dot3 .dot {
+    width: 7px;
+    height: 7px;
+
+  /*   width: 10px;
+    height: 10px; */
+}
+
+#dot4{
+    left:34px;
+    top:34px;
+}
+#dot4 .dot {
+    width: 8px;
+    height: 8px;
+
+    /* width: 9px;
+    height: 9px; */
+}
+
+#dot5{
+    left:20px;
+    top:40px;
+}
+#dot5 .dot {
+    width: 9px;
+    height: 9px;
+
+   /*  width: 8px;
+    height: 8px; */
+}
+
+#dot6{
+    left:6px;
+    top:34px;
+}
+#dot6 .dot {
+    width: 10px;
+    height: 10px;
+
+    /* width: 7px;
+    height: 7px; */
+}
+
+#dot7{
+    left:0;
+    top:20px;
+}
+#dot7 .dot {
+    width: 11px;
+    height: 11px;
+
+    /* width: 6px;
+    height: 6px; */
+}
+
+#dot8{
+    left:6px;
+    top:6px;
+}
+#dot8 .dot {
+    width: 12px;
+    height: 12px;
+
+ /*    width: 5px;
+    height: 5px; */
+}
+@keyframes rotating {
+    0% {
+        -webkit-transform: rotate(0deg);
+           -moz-transform: rotate(0deg);
+            -ms-transform: rotate(0deg);
+             -o-transform: rotate(0deg);
+                transform: rotate(0deg);
+    }
+    50% {
+           -moz-transform: rotate(180deg);
+            -ms-transform: rotate(180deg);
+        -webkit-transform: rotate(180deg);
+             -o-transform: rotate(180deg);
+                transform: rotate(180deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+           -moz-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+             -o-transform: rotate(360deg);
+                transform: rotate(360deg);
+    }
+}

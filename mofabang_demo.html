@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<style>
+body{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:#222;
+}
+.main {
+    position: relative;
+    width:30px;
+    height:130px;
+    margin: 0 auto;
+    margin-top:130px;
+    animation:movimg 5s ease infinite;
+}
+.main .bang_head {
+    position: relative;
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+    background-color:#FBFF7A;
+    animation:growing 1s infinite alternate;
+}
+.main .bang_body {
+    position:relative;
+    width:10px;
+    height:100px;
+    bottom:0;
+    margin-left:10px;
+    background-color:#555;
+}
+@keyframes movimg {
+    0% {
+        -webkit-transform: rotate(45deg);
+           -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+             -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+    }
+    50%{
+        -webkit-transform: rotate(-45deg);
+           -moz-transform: rotate(-45deg);
+            -ms-transform: rotate(-45deg);
+             -o-transform: rotate(-45deg);
+                transform: rotate(-45deg);
+    }
+    100%{
+        -webkit-transform: rotate(45deg);
+           -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+             -o-transform: rotate(45deg);
+                transform: rotate(45deg);
+    }
+}
+@keyframes growing{
+    from {
+        box-shadow: inset 0 0 20px 20px #E8D500, 0 0 50px 10px #E8D500, inset 0 0 80px 80px #FFED24;
+    }
+    to {
+        box-shadow: inset 0 0 20px 20px #E8D500, 0 0 100px 10px #E8D500, inset 0 0 50px 50px #FFED24;
+    }
+}
+</style>
+<body>
+<div class="main">
+    <div class="bang_body">
+
+    </div>
+    <div class="bang_head">
+
+    </div>
+</div>
+</body>
+</html>
