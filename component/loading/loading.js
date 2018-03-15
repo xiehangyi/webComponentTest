@@ -2,11 +2,11 @@
 * @Author: xhy
 * @Date:   2017-11-13 11:33:49
 * @Last Modified by:   xhy
-* @Last Modified time: 2017-11-14 14:57:52
+* @Last Modified time: 2017-11-14 15:22:17
 */
 (function($,window){
     var DEFAULT = {
-        direction:'ck',
+        direction:'s', // s 顺时针    n 逆时针
         multiple:1.1,   // 倍数
         num:8,  //圆点个数
         min_diameter:5, // 最小圆点的直径
@@ -48,7 +48,6 @@
         var num = this.options.multiple;
         var direc = this.options.direction; // 'cck' 逆时针    'ck' 顺时针
 
-
         $.each($dot_boxes,function(i,v){
             var $v = $(v);
             var left = parseInt($v.css('left'))*num;
@@ -57,11 +56,10 @@
             $v.css('top',top*num+'px');
         });
 
-
         var $dots = $('.dot');
         $.each($dots,function(i,v){
             var $v = $(v);
-            if(direc == 'cck'){
+            if(direc == 'n'){
                 setInterval(function(){
                     width = $v.width()+1;
                     height = $v.height()+1;
@@ -98,7 +96,6 @@
         // 设置颜色
         $dots.css('background-color',this.options.color);
     }
-
 
 
     loading.prototype = {

@@ -1,29 +1,54 @@
-// $(function(){
-//     $('.box.a').click(function(){
-//         // var dp = $(this).datepicker({
-//         //     select:function(y,m,d){
-//         //         dp.hide();
-//         //         console.log(y,m,d);
-//         //     }
-//         // });
-//         // dp.show();
+$(function(){
+    $('.box.a').click(function(){
+        // var dp = $(this).datepicker({
+        //     select:function(y,m,d){
+        //         dp.hide();
+        //         console.log(y,m,d);
+        //     }
+        // });
+        // dp.show();
 
-//         var dp = new datepicker_new(this,{
-//             years:10,
-//             direction:'bottom',
-//             language:'en',
-//             select:function(y,m,d) {
-//                 dp.hide();
-//                 console.log(y,m,d);
-//             }
-//         });
-//         dp.show();
-//     });
+        var dp = new datepicker_new(this,{
+            years:10,
+            direction:'bottom',
+            class:"my_picker",
+            language:'ch',
+            select:function(y,m,d) {
+                dp.hide();
+                console.log(y,m,d);
+            }
+        });
+        dp.show();
+    });
 
-//     $(window).on('resize.a',function(){
-//         console.log(2);
-//     });
-// });
+    $('.box.b').click(function(){
+        // var dp = $(this).datepicker({
+        //     select:function(y,m,d){
+        //         dp.hide();
+        //         console.log(y,m,d);
+        //     }
+        // });
+        // dp.show();
+
+        var dp = new datepicker_new(this,{
+            years:10,
+            direction:'bottom',
+            class:"my_picker",
+            language:'en',
+            select:function(y,m,d) {
+                dp.hide();
+                console.log(y,m,d);
+            }
+        });
+        dp.show();
+    });
+
+
+
+    $(window).on('resize.a',function(){
+        console.log(2);
+    });
+});
 
 
 
@@ -96,21 +121,21 @@ var data = [
 // });
 
 
-$(function(){
+// $(function(){
 
-    $('.pulldown_tree').pulldown_tree({
-    	data:data,
-        direction:'bottom',
-        width:150,
-        action:function(id,val){
-            console.log(id);
-            console.log(val);
-        }
-    });
+//     $('.pulldown_tree').pulldown_tree({
+//     	data:data,
+//         direction:'bottom',
+//         width:150,
+//         action:function(id,val){
+//             console.log(id);
+//             console.log(val);
+//         }
+//     });
 
-    // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
-    // $cover.show(); // 显示遮罩层
-});
+//     // var $cover = xhy_view_utils.cover_layer(); // 创建遮罩层
+//     // $cover.show(); // 显示遮罩层
+// });
 
 
 // $(function(){

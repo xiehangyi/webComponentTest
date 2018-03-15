@@ -27,7 +27,7 @@
     }
 
 
-    .progress_bar {
+    /* .progress_bar {
         position: relative;
         display:inline-block;
         margin:0 auto;
@@ -82,7 +82,7 @@
     }
     .progress_bar .item:last-child {
         margin-right:0;
-    }
+    } */
 </style>
 <body>
 <div class="main">
@@ -90,7 +90,7 @@
         查看进度
     </div>
     <div class="box">
-        <div class="progress_bar">
+        <!-- <div class="progress_bar">
             <div class="line">
                 <div class="line-bar"></div>
             </div>
@@ -98,7 +98,7 @@
             <div class="item running"><span class="item_name">进行中</span></div>
             <div class="item unfinish"><span class="item_name">未完成</span></div>
             <div class="item unfinish"><span class="item_name">结束</span></div>
-        </div>
+        </div> -->
     </div>
 </div>
 </body>
@@ -106,41 +106,41 @@
 <script type="text/javascript" src="component/progress_bar/progress_bar.js"></script>
 <script type="text/javascript">
     $(function(){
-        // var $pro = new progress_bar('.box',{
-        //     item_count:5,
-        //     running_item:2,
-        //     item_name:['采购申请','审批','采购','统计入库','生成表单'],
-        // });
-        //
-        // $('.btn').click(function(){
-        //     var $this = $(this);
-        //     var width = $pro.width();
-        //     if($this.hasClass('open')){
-        //         $('.box .progress_bar').animate({'width':0}, {
-        //             duration:'normal',
-        //             start:function(){
-        //             },
-        //             complete: function(){
-        //                $this.removeClass('open');
-        //                $pro.hide();
-        //                $pro.width(width);
-        //             }
-        //         });
-        //     } else {
-        //         var width = $pro.width();
-        //         $pro.width(0);
+        var $pro = new progress_bar('.box',{
+            item_count:5,
+            running_item:2,
+            item_name:['采购申请','审批','采购','统计入库','生成表单'],
+        });
 
-        //         $('.box .progress_bar').animate({'width':width+'px'}, {
-        //             duration:'normal',
-        //             start:function(){
-        //                 $pro.show();
-        //             },
-        //             complete: function(){
-        //                $this.addClass('open');
-        //             }
-        //         });
-        //     }
-        // });
+        $('.btn').click(function(){
+            var $this = $(this);
+            var width = $pro.width();
+            if($this.hasClass('open')){
+                $('.box .progress_bar').animate({'width':0}, {
+                    duration:'normal',
+                    start:function(){
+                    },
+                    complete: function(){
+                       $this.removeClass('open');
+                       $pro.hide();
+                       $pro.width(width);
+                    }
+                });
+            } else {
+                var width = $pro.width();
+                $pro.width(0);
+
+                $('.box .progress_bar').animate({'width':width+'px'}, {
+                    duration:'normal',
+                    start:function(){
+                        $pro.show();
+                    },
+                    complete: function(){
+                       $this.addClass('open');
+                    }
+                });
+            }
+        });
     });
 </script>
 </html>

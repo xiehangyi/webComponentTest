@@ -5,21 +5,24 @@
 (function($,window){
 
     var DEFAULT = { // 公有
-        style:"",
-        years:10,
-        direction:'bottom',
-        select:null,
-        language:'ch'
+        style:"",  // 样式风格
+        class:"",  // 自定义类
+        years:10,  // 最大显示年数
+        direction:'bottom',  // 控制datepicker的位置
+        select:null,  // 选择时间后回调的事件
+        language:'en'  // 中英文
     };
 
     var interval = { // 私有
         date:new Date(),
-        year:0,
-        month:0,
-        day:0
+        year:0,         // 当前年
+        month:0,        // 当前月
+        day:0,          // 当前日
+        min_year:0,     // 最小年数
+        max_year:9999   // 最大年数
     };
 
-    var internation = {
+    var internation = { // 国际化
         ch:{
             week: ['日','一','二','三','四','五','六'],
             months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月","十月", "十一月", "十二月"],
@@ -80,7 +83,7 @@
             $input;
 
         // 构建datepicker
-        datepicker = '<div class="datepicker" style="display:none;">';
+        datepicker = '<div class="datepicker '+this.options.class+'" style="display:none;">';
 
         datepicker += build_header.call(this);
         datepicker += build_body.call(this);
@@ -128,33 +131,67 @@
         });
 
         $header.find('.datepicker-icon-pre').click(function(e){
-            var val = $month.val() - 1;
+            var month_val = parseInt($month.val());
+            var year_val = parseInt($year.val());
 
-            eventUtil.stopPropagation(e);
-
-            if(val === 0){
-                return;
+            if(month_val === 1){
+                if(year_val === that.interval.min_year) {
+                    return;
+                } else {
+                    $year.val(year_val-1);
+                    $month.val(12);
+                }
+            } else {
+                 $month.val(month_val-1);
             }
-            $month.val(val);
+
+            // if(year_val === that.interval.min_year && month_val === 0) {
+            //     return;
+            // } else {
+            //     if(month_val === 0){
+            //         $year.val(year_val-1);
+            //         $month.val(12);
+            //     } else {
+            //         $month.val(month_val);
+            //     }
+            // }
+
             $month.change();
+            eventUtil.stopPropagation(e);
         });
 
         $header.find('.datepicker-icon-next').click(function(e){
-            var val = parseInt($month.val()) + 1;
+            var month_val = parseInt($month.val());
+            var year_val = parseInt($year.val());
 
-            eventUtil.stopPropagation(e);
-
-            if(val === 13){
-                return;
+            if(month_val === 12) {
+                if(year_val === that.interval.max_year) {
+                    return;
+                } else {
+                    $year.val(year_val+1);
+                    $month.val(1);
+                }
+            } else {
+                $month.val(month_val+1);
             }
-            $month.val(val);
+
+            // if(year_val === that.interval.max_year && month_val === 13) {
+            //     return;
+            // } else {
+            //     if(month_val === 13){
+            //         $year.val(year_val+1);
+            //         $month.val(1);
+            //     } else {
+            //         $month.val(month_val);
+            //     }
+            // }
+
             $month.change();
+            eventUtil.stopPropagation(e);
         });
 
         $footer.find('.datepicker-now').click(function(e){
             var date = that.interval.date;
-
-            eventUtil.stopPropagation(e);
 
             $year.val(date.getFullYear());
             $month.val(date.getMonth()+1);
@@ -164,6 +201,7 @@
             that.interval.day = date.getDate();
 
             update_body_day.call(that);
+            eventUtil.stopPropagation(e);
         });
 
         $footer.find('.datepicker-dismiss').click(function(e){
@@ -255,9 +293,12 @@
             year_now = date.getFullYear(),
             year_name = this.internation.years;
 
+        this.interval.min_year = year_now-half_years;
+        this.interval.max_year = year_now+half_years;
+
         year = '<select id="datepicker-year">';
 
-        for(var i = year_now-half_years; i <= year_now+half_years; i++) {
+        for(var i = this.interval.min_year; i <= this.interval.max_year; i++) {
             if(i === year_now){
                 year += '<option value="'+i+'" selected>'+i+year_name+'</option>';
             } else {
@@ -389,7 +430,6 @@
      * 切换年份或月份时，更新日期状态
      * @Author   xhy
      * @DateTime 2017-08-15
-     * @return   {[type]}   [description]
      */
     function update_body_day(){
         var $datepicker = this.$datepicker,
